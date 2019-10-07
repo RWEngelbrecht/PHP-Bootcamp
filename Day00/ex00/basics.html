@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<style>
+			.column {
+				float: left;
+				width: 50%;
+				padding: 5px;
+			}
+			.row::after {
+				content: "";
+				clear: both;
+				display: table;
+			}
+			.row {
+				display: flex;
+			}
+			.column {
+				flex: 50%;
+				padding: 5px;
+			}
+		</style>
+		<title>Basics</title>
+	</head>
+	<body style="background-color: pink;">
+		<h1 align="center" style="color: white">-so bigger-</h1>
+		<div class="row">
+			<div class="column">
+				<img src="https://vusithembekwayo.com/wp-content/uploads/2017/12/takealot-logo.png" alt="Takealot" style="width:100%"/>
+				<a href="https://www.takealot.com/">www.takealot.com</a>
+			</div>
+			<div class="column">
+				<img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" style="width:100%"/>
+				<a href="https://www.amazon.com/">www.amazon.com</a>
+			</div>
+		</div>
+		<hr/>
+		<p align="right" style="font-family: Courier New">
+			<i>&copy;rengelbr 2019</i>
+		</p>
+	</body>
+</html>
