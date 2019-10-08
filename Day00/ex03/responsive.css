@@ -1,0 +1,43 @@
+.symbol {
+	text-align: center;
+	font-weight: bold;
+	font-size: 2vw;
+}
+.number {
+	float: left;
+	font-size: small;
+	font-size: 1vw;
+}
+.atomWeight {
+	float: right;
+	font-size: small;
+	font-size: 1vw;
+}
+table, td {
+	border: 1px solid;
+	border-collapse: collapse;
+}
+.green {
+	background-color: green;
+}
+.lime {
+	background-color: lime;
+}
+.orange {
+	background-color: orange;
+}
+.yellow {
+	background-color: yellow;
+}
+.pink {
+	background-color: pink;
+}
+.grey {
+	background-color: grey;
+}
+.cyan {
+	background-color: cyan;
+}
+.lightblue {
+	background-color: lightblue;
+}
