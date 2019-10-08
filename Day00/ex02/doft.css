@@ -17,20 +17,40 @@ body {
 #headerRect {
 	border-radius: 20px;
 	background: #909090;
-	padding: 20px;
-	width: 1024px;
-	height: 105px;
+	padding: 15px;
+	width: 1424px;
+	height: 115px;
 	box-shadow: 12px 14px 10px;
+	margin-left: 200px;
 }
 
 #leftRect {
-	border-radius: 25px;
+	border-radius: 20px;
 	background: #909090;
-	width: 180px;
+	width: 165px;
 	height: 500px;
 	box-shadow: 12px 14px 10px;
 	margin-top: 25px;
-	margin-left: 200px;
-	float: left;
+	margin-left: 240px;
+}
+
+#rightRect {
+	border-radius: 20px;
+	background: #909090;
+	width: 165px;
+	height: 500px;
+	box-shadow: 12px 14px 10px;
+	margin-top: -650px;
+	margin-left: 1470px;
+}
+
+#mainPic {
+	border-radius: 20px;
+	background: #909090;
+	width: 1000px;
+	height: 650px;
+	box-shadow: 12px 14px 10px;
+	margin-top: -500px;
+	margin-left: 440px;
 }
 
