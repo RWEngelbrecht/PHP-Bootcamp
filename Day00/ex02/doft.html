@@ -6,30 +6,50 @@
 		<link rel="stylesheet" type="text/css" href="doft.css">
 	</head>
 	<body>
-		<div id="headerRect">
-			<img src="resources/day_of_the_42.png" alt="Day of the 42" style="width: 50%; height: 100%" align="left"/>
-			<div id="topright">
-				<img src="resources/reload.png" alt="reload.png" style="width: 20px" align="right" />
+		<div style="margin-left:345px">
+			<div id="headerRect">
+				<img src="resources/day_of_the_42.png" alt="Day of the 42" style="width: 40%; height: 100%" align="left"/>
+				<div id="topright">
+					<a href="https://www.disney.com">
+						<img src="resources/reload.png" title="Start from the beginning" alt="reload.png" style="width: 20px" align="right" />
+					</a>
+				</div>
+				<div id="botomright">
+					<a href="https://www.relaischateaux.com">
+						<img src="resources/close.gif" title="Disconnect" alt="close.png" style="width: 20px;" align="right" />
+					</a>
+				</div>
+				<img src="resources/loupe.png" alt="magnifying_glass.png" style="position: relative" align="right" />
 			</div>
-			<div id="botomright">
-				<img src="resources/close.gif" alt="close.png" style="width: 20px;" align="right" />
+			<div id="leftRect">
+				<img src="resources/arrow.png" title="Advance" alt="Advance" style="margin: 12px 45px; width: 75px;"/>
+				<img src="resources/main.png" title="Take" alt="Take" style="margin: 8px 45px; width: 75px;"/>
+				<img src="resources/oeil.png" title="Look" alt="Look" style="margin: 8px 45px; width: 75px; border:5px solid red; border-radius: 5px;"/>
+				<img src="resources/outil.png" title="Use" alt="Use" style="margin: 8px 45px; width: 75px;"/>
+				<img src="resources/chat-icon.png" title="Speak" alt="Speak" style="margin: 11px 45px; width: 75px;"/>
 			</div>
-			<img src="resources/loupe.png" alt="magnifying_glass.png" style="position: relative" align="right" />
-		</div>
-		<div id="leftRect">
-			<img src="resources/arrow.png" alt="arrow.png" style="margin: 12px 45px; width: 75px;"/>
-			<img src="resources/main.png" alt="arrow.png" style="margin: 12px 45px; width: 75px;"/>
-			<img src="resources/oeil.png" alt="arrow.png" style="margin: 12px 45px; width: 75px;"/>
-			<img src="resources/outil.png" alt="arrow.png" style="margin: 12px 45px; width: 75px;"/>
-			<img src="resources/chat-icon.png" alt="arrow.png" style="margin: 12px 45px; width: 75px;"/>
-		</div>
-		<div id="mainPic">
-			<img src="resources/cluster.jpg" alt="cluster.jpg" style="width: 970px; height: 620px; margin: 15px 15px"/>
-		</div>
-		<div id="rightRect">
-			<img src="resources/book.png" alt="book.png" style="width: 75px; margin: 15px 45px"/>
-			<img src="resources/towel.png" alt="towel".png style="width: 75px; margin: 10px 45px"/>
-			<img src="resources/brick.jpg" alt="brick.jpg" style="width: 140px; height: 80px; margin: 10px 15px"/>
+			<div id="mainPic">
+				<a href="https://www.ikea.com"><div class="invisiButtonChair" title="chair"></div></a>
+				<a href="https://www.apple.com"><div class="invisiButtonComp" title="Mac"></div></a>
+				<img src="resources/cluster.jpg" alt="cluster.jpg" style="width: 970px; height: 620px; margin: 15px 15px;"/>
+			</div>
+			<div id="rightRect">
+				<img src="resources/book.png" alt="book.png" style="width: 75px; margin: 15px 45px"/>
+				<img src="resources/towel.png" alt="towel".png style="width: 75px; margin: 10px 45px"/>
+				<div class="wall">
+					<img src="resources/brick.jpg" alt="brick.jpg"/>
+				</div>
+			</div>
+			<div id="formRect">
+				<p style="margin: 10px; font-size: 20px; font-family:Arial, Helvetica, sans-serif">Vous
+					<big style="font-family:'Times New Roman', Times, serif; font-size: 45px">entrez</big> alors dans une grande piece remplie<br/>
+					d'<font style="text-shadow: 5px 5px 4px red">odinateurs</font>...<br/>
+					<i>- Bonjour, vous &ecirc;tes nouveau ici ?</i></p>
+				<form>
+					<input type="text" name="whiteBlock" style="width: 350px; height: 20px; margin-left: 14px">
+					<input type="submit" name="Repondre" value="Repondre" style="width:100px; height: 25px">
+				</form>
+			</div>
 		</div>
 	</body>
 </html>
