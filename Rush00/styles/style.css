@@ -50,9 +50,8 @@ body {
 
 .menu_bar {
 	width: 1000px;
-	height: 50px;
+	height: 51px;
 	background: rgb(17, 15, 36);
-	color: black;
 }
 
 #menu {
@@ -89,21 +88,21 @@ body {
 
 .content_wrapper {
 	width: 1000px;
-	height: 800px;
+	/* height: 800px; */
 	margin: auto;
-	background: white;
+	background: rgba(50, 45, 104, 0.836);
 }
 
 #content_area {
 	width: 800px;
-	height: 800px;
+	/* height: 800px; */
 	float: right;
-	background: white;
+	background: rgba(50, 45, 104, 0.836);
 }
 
 #sidebar {
 	width: 200px;
-	height: 799px;
+	/* height: 800px; */
 	background: rgb(17, 15, 36);
 	float: left;
 }
@@ -146,6 +145,7 @@ body {
 #help {
 	width: 300px;
 	height: 100px;
+	padding: 15px;
 	float: right;
 }
 
@@ -157,7 +157,6 @@ body {
 #help a {
 	color: white;
 	padding: 10px;
-	margin: 0px;
 	font-size: 10px;
 	font-family: Arial, Helvetica, sans-serif;
 }
@@ -167,7 +166,7 @@ body {
 }
 
 #help h3 {
-	margin-top: 10px;
+	margin-top: 0px;
 	color: white;
 	font-family: Arial, Helvetica, sans-serif;
 }

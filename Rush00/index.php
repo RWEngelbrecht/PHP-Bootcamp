@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+include("functions/functions.php");
+?>
 <html>
 	<head>
 		<title>MozTech</title>
@@ -34,21 +37,18 @@
 				<div id="sidebar">
 					<div id="sidebar_title">Categories</div>
 					<ul id="sub_cats">
-						<li><a href="#">Computer</a></li>
-						<li><a href="#">Mobile</a></li>
-						<li><a href="#">Camera</a></li>
+						<?php get_categories(); ?>
 					</ul>
 					<div id="sidebar_title">Brands</div>
 					<ul id="sub_cats">
-						<li><a href="#">Apple</a></li>
-						<li><a href="#">Dell</a></li>
-						<li><a href="#">Toshiba</a></li>
+						<?php get_brands(); ?>
 					</ul>
 				</div>
 				<div id="content_area"></div>
 			</div>
 		<!-- Content ends -->
 			<div id="footer">
+				<h2 style="font-size:15px; float:left; padding:70px 0 0 20px; color:white;">&copy; rengelbr 2019</h2>
 				<div id="help">
 					<h3>Need help?</h3>
 					<li><a href="#">Contact Us</a></li>
