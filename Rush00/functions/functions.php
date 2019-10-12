@@ -25,4 +25,6 @@ function get_brands() {
 		echo "<li><a href=\"#\">$brand_title</a></li>";
 	}
 }
+
+
 ?>
