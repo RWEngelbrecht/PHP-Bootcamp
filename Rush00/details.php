@@ -24,7 +24,7 @@ include("functions/functions.php");
 					<li><a href="#">Cart</a></li>
 					<li><a href="#">Sign Up</a></li>
 					<div id="form">
-						<form method="GET" action="results" enctype="multipart/form-data">
+						<form method="GET" action="results.php" enctype="multipart/form-data">
 							<input type="text" name="user_query" placeholder="What do you want?"/>
 							<input type="submit" name="search" value="search" />
 						</form>
