@@ -24,7 +24,7 @@ include("functions/functions.php");
 					<li><a href="cart.php">Cart</a></li>
 					<li><a href="#">Sign Up</a></li>
 					<div id="form">
-						<form method="GET" action="results" enctype="multipart/form-data">
+						<form method="GET" action="results.php" enctype="multipart/form-data">
 							<input type="text" name="user_query" placeholder="What do you want?"/>
 							<input type="submit" name="search" value="search" />
 						</form>
@@ -45,10 +45,11 @@ include("functions/functions.php");
 					</ul>
 				</div>
 				<div id="content_area">
+					<?php cart(); ?>
 					<div id='shopping_cart'>
 						<span style="float:right;color:black;font-size:18px;padding:5px;line-height:40px">
 							 Welcome, guest.
-							<b> Cart: </b> Total items: Price total: <a href="cart.php" style="color:black">Go to cart</a>
+							<b> Cart: </b> Total items: <?php total_items(); ?> Price Total: <?php total_price(); ?> <a href="cart.php" style="color:black">Go to cart</a>
 						</span>
 					</div>
 					<div id="products_box">
