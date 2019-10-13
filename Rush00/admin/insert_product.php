@@ -84,7 +84,6 @@ if (isset($_POST['product_post'])){
 	$insert_product = "insert into products (product_cat, product_brand, product_title, product_price, product_descr, product_image, product_keywords) values ('$prod_categ', '$prod_brand', '$prod_title', '$prod_price', '$prod_descr', '$prod_image', '$prod_keywds')";
 
 	if (!$insert_pro = mysqli_query($con, $insert_product))
-		
-
+		echo "<h1 align=\"center\">Something went wrong!<h1>";
 }
 ?>

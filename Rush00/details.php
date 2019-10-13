@@ -12,16 +12,16 @@ include("functions/functions.php");
 		<div class ="main_wrapper">
 		<!-- Header starts -->
 			<div class="header_wrapper">
-				<a href="index.php"><img src="images/MozBanner.gif" /></a>
+				<img src="images/MozBanner.gif" />
 			</div>
 		<!-- Header ends -->
 		<!-- Navigation bar starts -->
 			<div class="menu_bar">
 				<ul id="menu">
-					<li><a href="index.php">Home</a></li></a>
-					<li><a href="all_products.php">All Products</a></li>
-					<li><a href="customer/my_account.php">My Account</a></li>
-					<li><a href="cart.php">Cart</a></li>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">All Products</a></li>
+					<li><a href="#">My Account</a></li>
+					<li><a href="#">Cart</a></li>
 					<li><a href="#">Sign Up</a></li>
 					<div id="form">
 						<form method="GET" action="results" enctype="multipart/form-data">
@@ -51,10 +51,30 @@ include("functions/functions.php");
 							<b> Cart: </b> Total items: Price total: <a href="cart.php" style="color:black">Go to cart</a>
 						</span>
 					</div>
-					<div id="products_box">
-						<?php get_prod(); ?>
-						<?php get_cat_prod(); ?>
-						<?php get_brand_prod(); ?>
+					<?php
+						if (isset($_GET['pro_id'])) {
+							$product_id = $_GET['pro_id'];
+							$get_prod = "select * from products where product_id='$product_id'";
+							$run_prod = mysqli_query($con, $get_prod);
+							while($row_prod = mysqli_fetch_array($run_prod)) {
+								$prod_id = $row_prod['product_id'];
+								$prod_title = $row_prod['product_title'];
+								$prod_price = $row_prod['product_price'];
+								$prod_image = $row_prod['product_image'];
+								$prod_descr = $row_prod['product_descr'];
+								echo "
+										<div id='single_product'>
+											<h3>$prod_title</h3>
+											<img src='admin/product_images/$prod_image' width='250' height='200'/>
+											<p style='margin-bottom:5px;color:white'>R$prod_price.00</p>
+											<p> $prod_descr</p>
+											<a href='index.php' style='text-decoration:none;color:orange'>Go Back</a>
+											<a href='index.php?pro_id=$prod_id'><button style='margin-left:100px'>Add to cart</button></a>
+										</div>
+								";
+							}
+						}
+					?>
 					</div>
 				</div>
 			</div>
