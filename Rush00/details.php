@@ -18,10 +18,10 @@ include("functions/functions.php");
 		<!-- Navigation bar starts -->
 			<div class="menu_bar">
 				<ul id="menu">
-					<li><a href="#">Home</a></li>
-					<li><a href="#">All Products</a></li>
-					<li><a href="#">My Account</a></li>
-					<li><a href="#">Cart</a></li>
+				<li><a href="index.php">Home</a></li></a>
+					<li><a href="all_products.php">All Products</a></li>
+					<li><a href="customer/my_account.php">My Account</a></li>
+					<li><a href="cart.php">Cart</a></li>
 					<li><a href="#">Sign Up</a></li>
 					<div id="form">
 						<form method="GET" action="results.php" enctype="multipart/form-data">
@@ -45,10 +45,11 @@ include("functions/functions.php");
 					</ul>
 				</div>
 				<div id="content_area">
+					<?php cart(); ?>
 					<div id='shopping_cart'>
 						<span style="float:right;color:black;font-size:18px;padding:5px;line-height:40px">
 							 Welcome, guest.
-							<b> Cart: </b> Total items: Price total: <a href="cart.php" style="color:black">Go to cart</a>
+							 <b> Cart: </b> Total items: <?php total_items(); ?> Price Total: <?php total_price(); ?> <a href="cart.php" style="color:black">Go to cart</a>
 						</span>
 					</div>
 					<?php
@@ -64,9 +65,9 @@ include("functions/functions.php");
 								$prod_descr = $row_prod['product_descr'];
 								echo "
 										<div id='single_product'>
-											<h3>$prod_title</h3>
+											<h3 style='color:white;'>$prod_title</h3>
 											<img src='admin/product_images/$prod_image' width='250' height='200'/>
-											<p style='margin-bottom:5px;color:white'>R$prod_price.00</p>
+											<p style='margin-bottom:5px;color:white'>R$prod_price</p>
 											<p> $prod_descr</p>
 											<a href='index.php' style='text-decoration:none;color:orange'>Go Back</a>
 											<a href='index.php?pro_id=$prod_id'><button style='margin-left:100px'>Add to cart</button></a>

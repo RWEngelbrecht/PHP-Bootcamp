@@ -45,10 +45,11 @@ include("functions/functions.php");
 					</ul>
 				</div>
 				<div id="content_area">
+					<?php cart(); ?>
 					<div id='shopping_cart'>
 						<span style="float:right;color:black;font-size:18px;padding:5px;line-height:40px">
 							 Welcome, guest.
-							<b> Cart: </b> Total items: Price total: <a href="cart.php" style="color:black">Go to cart</a>
+							 <b> Cart: </b> Total items: <?php total_items(); ?> Price Total: <?php total_price(); ?> <a href="cart.php" style="color:black">Go to cart</a>
 						</span>
 					</div>
 					<div id="products_box">
@@ -67,7 +68,7 @@ include("functions/functions.php");
 										<div id='single_product'>
 											<h3>$prod_title</h3>
 											<img src='admin/product_images/$prod_image' width='180' height='180' style=''/>
-											<p style='margin-bottom:5px'>R$prod_price.99</p>
+											<p style='margin-bottom:5px;color:white;'>R$prod_price</p>
 											<a href='details.php?pro_id=$prod_id' style='text-decoration:none;color:orange'>Details</a>
 											<a href='index.php?pro_id=$prod_id'><button style='margin-left:70px'>Add to cart</button></a>
 										</div>

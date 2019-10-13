@@ -31,7 +31,7 @@ function cart() {
 		else {
 			$insert_pro = "insert into cart (p_id,ip_add) values ('$pro_id','$ip')";
 			$run_pro = mysqli_query($con, $insert_pro);
-			echo "<script>window.open('index.php','_self')</script>";
+			// echo "<script>window.open('index.php','_self')</script>";
 		}
 	}
 }
@@ -54,21 +54,22 @@ function total_items() {
 }
 
 function total_price() {
+	$total = 0;
 	global $con;
-	if (isset($_GET['add_cart'])) {
-		$ip = getIp();
-		$get_price = "select * from cart where ip_add='$ip'";
-		$run_price = mysqli_query($con, $get_price);
-		while($p_price = mysqli_fetch_array($run_price)) {
-			$pro_id = $p_price['p_id'];
-			$pro_price = "select * from products where product_id='$pro_id'";
-			$run_pro_price = mysqli_query($con, $pro_price);
-			while ($pp_price = mysqli_fetch_array($run_pro_price)) {
-				$products_price += $pp_price['product_price'];
-			}
+	$ip = getIp();
+	$get_price = "select * from cart where ip_add='$ip'";
+	$run_price = mysqli_query($con, $get_price);
+	while($p_price = mysqli_fetch_array($run_price)) {
+		$pro_id = $p_price['p_id'];
+		$pro_price = "select * from products where product_id='$pro_id'";
+		$run_pro_price = mysqli_query($con, $pro_price);
+		while ($pp_price = mysqli_fetch_array($run_pro_price)) {
+			$products_price = array($pp_price['product_price']);
+			$values = array_sum($products_price);
+			$total += $values;
 		}
 	}
-	echo $products_price;
+	echo "R".$total;
 }
 
 //get categories from mysql database
@@ -110,7 +111,7 @@ function get_prod() {
 					<div id='single_product'>
 						<h3 style='color:white'>$prod_title</h3>
 						<img src='admin/product_images/$prod_image' width='180' height='180' style=''/>
-						<p style='margin-bottom:5px'>R$prod_price.99</p>
+						<p style='margin-bottom:5px;color:white;'>R$prod_price</p>
 						<a href='details.php?pro_id=$prod_id' style='text-decoration:none;color:orange'>Details</a>
 						<a href='index.php?add_cart=$prod_id'><button style='margin-left:70px'>Add to cart</button></a>
 					</div>
@@ -137,7 +138,7 @@ function get_cat_prod() {
 					<div id='single_product'>
 						<h3>$prod_title</h3>
 						<img src='admin/product_images/$prod_image' width='180' height='180' style=''/>
-						<p style='margin-bottom:5px'>R$prod_price.99</p>
+						<p style='margin-bottom:5px;color:white;'>R$prod_price</p>
 						<a href='details.php?pro_id=$prod_id' style='text-decoration:none;color:orange'>Details</a>
 						<a href='index.php?add_cart=$prod_id'><button style='margin-left:70px'>Add to cart</button></a>
 					</div>
@@ -164,7 +165,7 @@ function get_brand_prod() {
 					<div id='single_product'>
 						<h3>$prod_title</h3>
 						<img src='admin/product_images/$prod_image' width='180' height='180' style=''/>
-						<p style='margin-bottom:5px'>R$prod_price.99</p>
+						<p style='margin-bottom:5px;color:white;'>R$prod_price</p>
 						<a href='details.php?pro_id=$prod_id' style='text-decoration:none;color:orange'>Details</a>
 						<a href='index.php?add_cart=$prod_id'><button style='margin-left:70px'>Add to cart</button></a>
 					</div>
