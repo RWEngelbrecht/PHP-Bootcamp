@@ -1,9 +1,77 @@
 <?php
 
 $con = mysqli_connect("localhost","root","qwerqwer","ecommerce");
+if (mysqli_connect_errno()) {
+	echo "Failed to connect to MySQL: ".mysqli_connect_error();
+}
+
+//get user ip address
+function getIp() {
+    $ip = $_SERVER['REMOTE_ADDR'];
+
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+        $ip = $_SERVER['HTTP_CLIENT_IP'];
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    }
+
+    return $ip;
+}
+
+//adds items to cart
+function cart() {
+	if (isset($_GET['add_cart'])) {
+		global $con;
+		$ip = getIp();
+		$pro_id = $_GET['add_cart'];
+		$check_pro = "select * from cart where ip_add='$ip' AND p_id='$pro_id'";
+		$run_check = mysqli_query($con, $check_pro);
+		if (mysqli_num_rows($run_check)>0)
+			echo "";
+		else {
+			$insert_pro = "insert into cart (p_id,ip_add) values ('$pro_id','$ip')";
+			$run_pro = mysqli_query($con, $insert_pro);
+			echo "<script>window.open('index.php','_self')</script>";
+		}
+	}
+}
+
+function total_items() {
+	global $con;
+	if (isset($_GET['add_cart'])) {
+		$ip = getIp();
+		$get_items = "select * from cart where ip_add='$ip'";
+		$run_items = mysqli_query($con, $get_items);
+		$count_items = mysqli_num_rows($run_items);
+	}
+	else {
+		$ip = getIp();
+		$get_items = "select * from cart where ip_add='$ip'";
+		$run_items = mysqli_query($con, $get_items);
+		$count_items = mysqli_num_rows($run_items);
+	}
+	echo $count_items;
+}
+
+function total_price() {
+	global $con;
+	if (isset($_GET['add_cart'])) {
+		$ip = getIp();
+		$get_price = "select * from cart where ip_add='$ip'";
+		$run_price = mysqli_query($con, $get_price);
+		while($p_price = mysqli_fetch_array($run_price)) {
+			$pro_id = $p_price['p_id'];
+			$pro_price = "select * from products where product_id='$pro_id'";
+			$run_pro_price = mysqli_query($con, $pro_price);
+			while ($pp_price = mysqli_fetch_array($run_pro_price)) {
+				$products_price += $pp_price['product_price'];
+			}
+		}
+	}
+	echo $products_price;
+}
 
 //get categories from mysql database
-
 function get_categories() {
 	global $con;
 	$get_cats = "select * from categories";
@@ -40,11 +108,11 @@ function get_prod() {
 			$prod_image = $row_prod['product_image'];
 			echo "
 					<div id='single_product'>
-						<h3>$prod_title</h3>
+						<h3 style='color:white'>$prod_title</h3>
 						<img src='admin/product_images/$prod_image' width='180' height='180' style=''/>
 						<p style='margin-bottom:5px'>R$prod_price.99</p>
 						<a href='details.php?pro_id=$prod_id' style='text-decoration:none;color:orange'>Details</a>
-						<a href='index.php?pro_id=$prod_id'><button style='margin-left:70px'>Add to cart</button></a>
+						<a href='index.php?add_cart=$prod_id'><button style='margin-left:70px'>Add to cart</button></a>
 					</div>
 			";
 		}
@@ -71,7 +139,7 @@ function get_cat_prod() {
 						<img src='admin/product_images/$prod_image' width='180' height='180' style=''/>
 						<p style='margin-bottom:5px'>R$prod_price.99</p>
 						<a href='details.php?pro_id=$prod_id' style='text-decoration:none;color:orange'>Details</a>
-						<a href='index.php?pro_id=$prod_id'><button style='margin-left:70px'>Add to cart</button></a>
+						<a href='index.php?add_cart=$prod_id'><button style='margin-left:70px'>Add to cart</button></a>
 					</div>
 			";
 		}
@@ -98,7 +166,7 @@ function get_brand_prod() {
 						<img src='admin/product_images/$prod_image' width='180' height='180' style=''/>
 						<p style='margin-bottom:5px'>R$prod_price.99</p>
 						<a href='details.php?pro_id=$prod_id' style='text-decoration:none;color:orange'>Details</a>
-						<a href='index.php?pro_id=$prod_id'><button style='margin-left:70px'>Add to cart</button></a>
+						<a href='index.php?add_cart=$prod_id'><button style='margin-left:70px'>Add to cart</button></a>
 					</div>
 			";
 		}
