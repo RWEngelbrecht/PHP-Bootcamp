@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+session_start();
 include("functions/functions.php");
 ?>
 <html>
@@ -48,8 +49,9 @@ include("functions/functions.php");
 					<?php cart(); ?>
 					<div id='shopping_cart'>
 						<span style="float:right;color:black;font-size:18px;padding:5px;line-height:40px">
-							 Welcome, guest.
-							 <b> Cart: </b> Total items: <?php total_items(); ?> Price Total: <?php total_price(); ?> <a href="cart.php" style="color:black">Go to cart</a>
+							 Welcome, <?php if (isset($_SESSION['customer_email'])){echo $_SESSION['customer_email'];}
+							 				else{echo "Guest";} ?>.
+							<b> Cart: </b> Total items: <?php total_items(); ?> Price Total: <?php total_price(); ?> <a href="cart.php" style="color:black">Go to cart</a>
 						</span>
 					</div>
 					<?php
