@@ -29,9 +29,11 @@ function cart() {
 		if (mysqli_num_rows($run_check)>0)
 			echo "";
 		else {
+			session_start();
 			$insert_pro = "insert into cart (p_id,ip_add) values ('$pro_id','$ip')";
 			$run_pro = mysqli_query($con, $insert_pro);
-			// echo "<script>window.open('index.php','_self')</script>";
+			$_SESSION['qty'] = 1;
+			echo "<script>window.open('index.php','_self')</script>";
 		}
 	}
 }
