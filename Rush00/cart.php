@@ -23,7 +23,9 @@ include("functions/functions.php");
 					<li><a href="all_products.php">All Products</a></li>
 					<li><a href="customer/my_account.php">My Account</a></li>
 					<li><a href="cart.php">Cart</a></li>
-					<li><a href="#">Sign Up</a></li>
+					<li><a href="<?php if (!isset($_SESSION['customer_email'])){echo "checkout.php";}
+										else{echo "my_account.php";}
+									?>">Log In</a></li>
 					<div id="form">
 						<form method="GET" action="results.php" enctype="multipart/form-data">
 							<input type="text" name="user_query" placeholder="What do you want?"/>
@@ -49,7 +51,8 @@ include("functions/functions.php");
 					<?php cart(); ?>
 					<div id='shopping_cart'>
 						<span style="float:right;color:black;font-size:18px;padding:5px;line-height:40px">
-							 Welcome, guest.
+							 Welcome, <?php if (isset($_SESSION['customer_email'])){echo $_SESSION['customer_email'];}
+							 				else{echo "Guest";} ?>.
 							<b> Cart: </b> Total items: <?php total_items(); ?> Price Total: <?php total_price(); ?> <a href="cart.php" style="color:black">Go to cart</a>
 						</span>
 					</div>
@@ -112,7 +115,7 @@ include("functions/functions.php");
 								<tr align="center">
 									<td colspan="2"><input type="submit" name="update_cart" value="Update Cart"/></td>
 									<td><input type="submit" name="continue" value="Continue Shopping"/></td>
-									<td><button><a href="checkout.php" style="text-decoration:none;color:black">Checkout</a></button></td>
+									<td><input type="submit" name="checkout" value="Checkout"></td>
 								</tr>
 							</table>
 						</form>
@@ -130,6 +133,9 @@ include("functions/functions.php");
 							}
 							if (isset($_POST['continue'])) {
 								echo "<script>window.open('index.php','_self')</script>";
+							}
+							if (isset($_POST['checkout'])) {
+								echo "<script>window.open('checkout.php','_self')</script>";
 							}
 						?>
 					</div>
