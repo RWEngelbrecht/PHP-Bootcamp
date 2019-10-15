@@ -1,0 +1,1 @@
+SELECT user_card.last_name, user_card.first_name FROM db_rengelbr.user_card INNER JOIN db_rengelbr.member ON user_card.id_user=member.id_user_card WHERE user_card.last_name LIKE '%-%' OR user_card.first_name LIKE '%-%' ORDER BY last_name, first_name ASC;

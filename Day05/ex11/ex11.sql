@@ -1,0 +1,1 @@
+SELECT UPPER(user_card.last_name) as `NAME`, first_name, price FROM db_rengelbr.member INNER JOIN db_rengelbr.user_card ON user_card.id_user=member.id_user_card INNER JOIN db_rengelbr.subscription ON subscription.id_sub=member.id_sub AND subscription.price > 42 ORDER BY last_name, first_name ASC;
