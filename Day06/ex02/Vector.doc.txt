@@ -1,3 +1,28 @@
 <- Vector ----------------------------------------------------------------------
-Your documentation here.
+
+The Vector class handles vectors. It uses a homogeneous system for coordinates.
+
+An instance can be constructed with an instance of the Vertex class:
+$vert = new Vertex( array('x' => 0.0, 'y' => 0.0, 'z' => 0.0) );
+new Vector( array('dest' => $vert) );
+
+Optionally, the vector's origin can be specified with another Vertex instance:
+$origin = new Vertex( array('x' => 2.0, 'y' => 2.0, 'z' => 2.0) );
+new Vector( array('dest' => $vert, 'orig' => $origin) )
+
+The class contains the following methods:
+
+float   magnitude()               : returns the instantiated vector's length
+Vector  normalize()               : returns normalized version of vextor. If                                        it's already normalized, returns a copy.
+Vector  add(Vector $rhs)          : returns sum vector of instance and parameter
+Vector  sub(Vector $rhs)          : similar to sum, but returns difference
+Vector  opposite()                : returns oposite vector
+Vector  scalarProduct($k)         : returns the multiple of the vector with
+                                    scalar
+float   dotProduct(Vector $rhs)   : returns scalar multiplication of both
+                                    vectors float
+float   cos(Vector $rhs)          : returns the angle's appendix cosine between
+                                    two vectors
+Vector  crossProduct(Vector $rhs) : returns cross multiplication of two vectors
+
 ---------------------------------------------------------------------- Vector ->
