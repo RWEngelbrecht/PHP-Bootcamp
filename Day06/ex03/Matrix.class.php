@@ -202,7 +202,7 @@ class Matrix
 		$tab .= "x | %0.2f | %0.2f | %0.2f | %0.2f\n";
 		$tab .= "y | %0.2f | %0.2f | %0.2f | %0.2f\n";
 		$tab .= "z | %0.2f | %0.2f | %0.2f | %0.2f\n";
-		$tab .= "w | %0.2f | %0.2f | %0.2f | %0.2f\n";
+		$tab .= "w | %0.2f | %0.2f | %0.2f | %0.2f";
 		$tabArr = array();
 		for ($i = 0; $i < 16; $i++)
 			$tabArr[$i] = $this->matrix[$i];
