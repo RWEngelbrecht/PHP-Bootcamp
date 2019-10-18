@@ -100,8 +100,8 @@ class Matrix
 			$this->makeRotZ();
 		else if ($this->_preset == "TRANSLATION")
 			$this->makeTranslation();
-		// else if ($this->_preset == "PROJECTION")
-		// 	$this->makeProjection();
+		else if ($this->_preset == "PROJECTION")
+			$this->makeProjection();
 	}
 
 	private function makeIdentity($scale) {
@@ -142,25 +142,52 @@ class Matrix
 		$this->matrix[11] = $this->_vtc->__get('_z');
 	}
 
-	// private function makeProjection() {
-
-	// }
+	private function makeProjection() {
+		$this->makeIdentity(1);
+		$fov = $this->_fov;
+		$ratio = $this->_ratio;
+		$near = $this->_near;
+		$far = $this->_far;
+		$this->matrix[0] = (1 / tan($fov / 2)) / $ratio;
+		$this->matrix[5] = 1 / tan($fov / 2);
+		$this->matrix[10] = ($far + $near) * (1 / ($near - $far));
+		$this->matrix[11] = -1;
+		$this->matrix[14] = (2 * $far * $near) * (1 / ($near - $far));
+		$this->matrix[15] = 0;
+	}
 
 	public function mult($rhs) {
 		$mtxRet = array();
 		$mtxA = $this->matrix;
 		$mtxB = $rhs->matrix;
-		for ($i = 0; $i < 16; $i++) {
-			$j = $i * 4;
-			$mtxRet[$j + $i] = 0;
-			$mtxRet[$j + 0] += $mtxA[$j]*$mtxB[0] + $mtxA[$j + 1]*$mtxB[0+4];
-			$mtxRet[$j + 1] += $mtxA[$j]*$mtxB[1] + $mtxA[$j + 1]*$mtxB[1+4];
-			$mtxRet[$j + 2] += $mtxA[$j]*$mtxB[2] + $mtxA[$j + 1]*$mtxB[2+4];
-			$mtxRet[$j + 3] += $mtxA[$j]*$mtxB[3] + $mtxA[$j + 1]*$mtxB[3+4];
+		for ($i = 0; $i < 16; $i += 4) {
+			for ($j = 0; $j < 4; $j++) {
+				$mtxRet[$j + $i] = 0;
+				$mtxRet[$j + $i] += $mtxA[$i+0] * $mtxB[$j+0];
+				$mtxRet[$j + $i] += $mtxA[$i+1] * $mtxB[$j+4];
+				$mtxRet[$j + $i] += $mtxA[$i+2] * $mtxB[$j+8];
+				$mtxRet[$j + $i] += $mtxA[$i+3] * $mtxB[$j+12];
+			}
 		}
 		$matrice = new Matrix();
 		$matrice->matrix = $mtxRet;
 		return $matrice;
+	}
+
+	public function transformVertex($vtx) {
+		$mtx = $this->matrix;
+		$vtxX = $vtx->get_x();
+		$vtxY = $vtx->get_y();
+		$vtxZ = $vtx->get_z();
+		$vtxW = $vtx->get_w();
+
+		$retX = $mtx[0]*$vtxX + $mtx[1]*$vtxY + $mtx[2]*$vtxZ + $mtx[3]*$vtxW;
+		$retY = $mtx[4]*$vtxX + $mtx[5]*$vtxY + $mtx[6]*$vtxZ + $mtx[7]*$vtxW;
+		$retZ = $mtx[8]*$vtxX + $mtx[9]*$vtxY + $mtx[10]*$vtxZ + $mtx[11]*$vtxW;
+		$retW = $mtx[12]*$vtxX + $mtx[13]*$vtxY + $mtx[14]*$vtxZ + $mtx[15]*$vtxW;
+		$retArr = array('x'=>$retX, 'y'=>$retY, 'z'=>$retZ, 'w'=>$retW);
+		$retVtx = new Vertex($retArr);
+		return $retVtx;
 	}
 
 	function __destruct() {
