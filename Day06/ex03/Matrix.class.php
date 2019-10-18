@@ -148,11 +148,11 @@ class Matrix
 		$ratio = $this->_ratio;
 		$near = $this->_near;
 		$far = $this->_far;
-		$this->matrix[0] = (1 / tan($fov / 2)) / $ratio;
-		$this->matrix[5] = 1 / tan($fov / 2);
+		$this->matrix[5] = 1 / tan(deg2rad($fov) / 2);
+		$this->matrix[0] = $this->matrix[5] / $ratio;
 		$this->matrix[10] = ($far + $near) * (1 / ($near - $far));
-		$this->matrix[11] = -1;
-		$this->matrix[14] = (2 * $far * $near) * (1 / ($near - $far));
+		$this->matrix[11] =(2 * $far * $near) * (1 / ($near - $far));
+		$this->matrix[14] = -1;
 		$this->matrix[15] = 0;
 	}
 
@@ -208,7 +208,6 @@ class Matrix
 			$tabArr[$i] = $this->matrix[$i];
 		return vsprintf($tab, $tabArr);
 	}
-
 
 	static function doc() {
 		return file_get_contents('Matrix.doc.txt');
