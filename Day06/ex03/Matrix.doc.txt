@@ -1,3 +1,35 @@
 <- Matrix ----------------------------------------------------------------------
-Your documentation here.
+The Matrix class handles 4x4 matrices.
+
+It has a finite set of class constants used as presets to define what type of matrix is created:
+IDENTITY 	: Identity matrix;
+SCALE	 	: Scale a matrix;
+RX		 	: Rotate on x axis;
+RY		 	: Rotate on y axis;
+RZ		 	: Rotate on z axis;
+TRANSLATION : Translation matrix;
+PROJECTION	: Projection matrix;
+
+Must construct with an array containing the following keys:
+'preset'	: Mandatory. Sets the type of matrix created. Value must be one of
+			  the class constants.
+'scale'		: Scale factor. Mandatory when 'preset' set to SCALE.
+'angle'		: Rotation angle in radians. Mandatory when 'preset' set to RX, RY
+			  or RZ.
+'vtc'		: Translation vector. Mandatory when 'preset' set to TRANSLATION.
+'fov'		: Projection field of view in degrees. Mandatory when 'preset' set
+			  to PROJECTION.
+'ratio'		: Projection image ratio. Mandatory when 'preset' set to PROJECTION.
+'near'		: Projection matrix's near clipping plane. Mandatory when 'preset'
+			  set to PROJECTION.
+'far'		: Projection matrix's far clipping plane. Mandatory when 'preset'
+			  set to PROJECTION.
+
+When an instance of Matrix is constructed, its values won't be changeable.
+
+The class contains the following methods:
+Matrix  mult( $rhs )		: returns new Matrix that is the multiplied matrix
+							  of the calling instance and the given matrix.
+Vertex  transformVertrex()	: returns new Vertex transformed by the calling
+							  matrix.
 ---------------------------------------------------------------------- Matrix ->
