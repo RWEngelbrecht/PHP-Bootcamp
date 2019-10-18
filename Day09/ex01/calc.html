@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script>
+			window.setInterval(function(){alert("Please, use me...")}, 30000);
+			function calculate() {
+				var left = parseInt(document.getElementById('leftMem').value, 10);
+				var right = parseInt(document.getElementById('rightMem').value, 10);
+				if (left < 0 || right < 0){
+					window.alert("Error :(");
+					return;
+				}
+				var op = document.getElementById('operator').value;
+				if ((op == "%" || op =="/") && right == 0) {
+					console.log("It's over 9000!");
+					window.alert("It's over 9000!");
+					return ;
+				}
+				var calc = left + op + right;
+				var result = eval(calc);
+				console.log(result);
+				window.alert(result);
+			}
+		</script>
+	</head>
+	<body>
+		<form name="calculator">
+			<span>
+				<input type="text" id="leftMem"/>
+				<select id="operator">
+					<option>+</option>
+					<option>-</option>
+					<option>*</option>
+					<option>/</option>
+					<option>%</option>
+				</select>
+				<input type="text" id="rightMem"/>
+			</span>
+			<input type="submit" name="calc" value="Try me!" onclick="calculate()"/>
+		</form>
+
+	</body>
+</html>

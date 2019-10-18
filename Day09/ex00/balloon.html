@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+
+		<style>
+			#balloon {
+				width: 200px;
+				height: 200px;
+				border-radius:100%;
+				background-color: red;
+				margin: auto;
+			}
+		</style>
+		<script>
+				function clickBlow() {
+					var balloon = document.getElementById("balloon");
+					var colors = ['red', 'green', 'blue'];
+
+					if (typeof clickBlow.clicks == 'undefined')
+						clickBlow.clicks = 0;
+					if (++clickBlow.clicks < 3) {
+						balloon.style.backgroundColor = colors[clickBlow.clicks];
+					}
+					else {
+						clickBlow.clicks = 0;
+						balloon.style.backgroundColor = colors[clickBlow.clicks];
+					}
+					if (balloon.offsetWidth < 420) {
+						balloon.style.width = String(balloon.offsetWidth + 10) + 'px';
+						balloon.style.height = String(balloon.offsetHeight + 10) + 'px';
+					}
+					else {
+						balloon.style.width = "200px";
+						balloon.style.height = "200px";
+					}
+				}
+				function hoverBlow() {
+					var balloon = document.getElementById("balloon");
+					var colors = ['red', 'green', 'blue'];
+
+					if (typeof hoverBlow.h == 'undefined')
+						hoverBlow.h = 3;
+					if (--hoverBlow.h >= 0) {
+						balloon.style.backgroundColor = colors[hoverBlow.h];
+					}
+					else {
+						hoverBlow.h = 2;
+						balloon.style.backgroundColor = colors[hoverBlow.h];
+					}
+					if (balloon.offsetWidth > 200) {
+						balloon.style.width = String(balloon.offsetWidth - 5) + 'px';
+						balloon.style.height = String(balloon.offsetHeight - 5) + 'px';
+					}
+					else {
+						balloon.style.width = "200px";
+						balloon.style.height = "200px";
+					}
+				}
+		</script>
+	</head>
+	<body>
+
+		<div id="balloon" onclick="clickBlow()" onmouseover="hoverBlow()">
+
+		</div>
+
+	</body>
+</html>
