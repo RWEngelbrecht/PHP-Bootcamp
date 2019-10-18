@@ -22,40 +22,42 @@ class Matrix
 	static $verbose = false;
 
 	public function __construct($arr = null) {
-		if (isset($arr['preset'])) {
-			$this->_preset = $arr['preset'];
+		if (isset($arr)) {
+			if (isset($arr['preset'])) {
+				$this->_preset = $arr['preset'];
+			}
+			if (isset($arr['scale'])){
+				$this->_scale = $arr['scale'];
+			}
+			if (isset($arr['angle'])) {
+				$this->_angle = $arr['angle'];
+			}
+			if (isset($arr['vtc'])) {
+				$this->_vtc = $arr['vtc'];
+			}
+			if (isset($arr['fov'])) {
+				$this->_fov = $arr['fov'];
+			}
+			if (isset($arr['ratio'])) {
+				$this->_ratio = $arr['ratio'];
+			}
+			if (isset($arr['near'])) {
+				$this->_near = $arr['near'];
+			}
+			if (isset($arr['far'])) {
+				$this->_far = $arr['far'];
+			}
+			if (!$this->checkPreset())
+				trigger_error("Oh no! Something went wrong!", E_USER_ERROR);
+			$this->makeMatrix();
+			if (Self::$verbose) {
+				if ($this->_preset == Self::IDENTITY)
+					print("Matrix IDENTITY instance constructed".PHP_EOL);
+				else
+					print("Matrix ".$this->_preset." preset instance constructed".PHP_EOL);
+			}
+			$this->makeMatrixType();
 		}
-		if (isset($arr['scale'])){
-			$this->_scale = $arr['scale'];
-		}
-		if (isset($arr['angle'])) {
-			$this->_angle = $arr['angle'];
-		}
-		if (isset($arr['vtc'])) {
-			$this->_vtc = $arr['vtc'];
-		}
-		if (isset($arr['fov'])) {
-			$this->_fov = $arr['fov'];
-		}
-		if (isset($arr['ratio'])) {
-			$this->_ratio = $arr['ratio'];
-		}
-		if (isset($arr['near'])) {
-			$this->_near = $arr['near'];
-		}
-		if (isset($arr['far'])) {
-			$this->_far = $arr['far'];
-		}
-		if (!$this->checkPreset())
-			trigger_error("Oh no! Something went wrong!", E_USER_ERROR);
-		$this->makeMatrix();
-		if (Self::$verbose) {
-			if ($this->_preset == Self::IDENTITY)
-				print("Matrix IDENTITY instance constructed".PHP_EOL);
-			else
-				print("Matrix ".$this->_preset." preset instance constructed".PHP_EOL);
-		}
-		$this->makeMatrixType();
 	}
 
 	private function checkPreset() {
@@ -98,8 +100,8 @@ class Matrix
 			$this->makeRotZ();
 		else if ($this->_preset == "TRANSLATION")
 			$this->makeTranslation();
-		else if ($this->_preset == "PROJECTION")
-			$this->makeProjection();
+		// else if ($this->_preset == "PROJECTION")
+		// 	$this->makeProjection();
 	}
 
 	private function makeIdentity($scale) {
@@ -140,8 +142,25 @@ class Matrix
 		$this->matrix[11] = $this->_vtc->__get('_z');
 	}
 
-	private function makeProjection() {
-		
+	// private function makeProjection() {
+
+	// }
+
+	public function mult($rhs) {
+		$mtxRet = array();
+		$mtxA = $this->matrix;
+		$mtxB = $rhs->matrix;
+		for ($i = 0; $i < 16; $i++) {
+			$j = $i * 4;
+			$mtxRet[$j + $i] = 0;
+			$mtxRet[$j + 0] += $mtxA[$j]*$mtxB[0] + $mtxA[$j + 1]*$mtxB[0+4];
+			$mtxRet[$j + 1] += $mtxA[$j]*$mtxB[1] + $mtxA[$j + 1]*$mtxB[1+4];
+			$mtxRet[$j + 2] += $mtxA[$j]*$mtxB[2] + $mtxA[$j + 1]*$mtxB[2+4];
+			$mtxRet[$j + 3] += $mtxA[$j]*$mtxB[3] + $mtxA[$j + 1]*$mtxB[3+4];
+		}
+		$matrice = new Matrix();
+		$matrice->matrix = $mtxRet;
+		return $matrice;
 	}
 
 	function __destruct() {
