@@ -3,11 +3,31 @@
 	<head>
 		<meta charset="UTF-8">
 		<script type="text/javascript" src="./todo.js"></script>
+		<style>
+			#ft_list {
+				background: rgba(0, 0, 0, 0.564);
+				margin: auto;
+				width: 70%;
+				font-size: 4vw;
+				/* padding-top: 20px; */
+			}
+			#ft_list div{
+				padding: 10px;
+				color: white;
+			}
+			#ft_list div:hover{
+				color: orangered;
+			}
+			#newTD {
+				float:right;
+				width: 100%;
+				height: 30px;
+			}
+		</style>
 	</head>
 	<body>
 		<div id="ft_list">
-
+			<input type="button" id="newTD" value="New" onclick="newToDo()"/>
 		</div>
-		<input type="button" name="new" id="newTD" value="New" onclick="newToDo()"/>
 	</body>
 </html>
