@@ -1,32 +1,47 @@
-var i = 0;
-var list;
+var i;
+var ft_list;
 var cook = [];
 
 window.onload = function() {
-	ft_list = document.querySelector("#ft_list");
-	var tmp = document.cookie;
-	if (tmp) {
-		cook = JSON.parse(tmp);
-		cook.forEach(function (e) {
-			newToDo(e);
-		});
+	ft_list = document.getElementById("ft_list");
+	cook = document.cookie.split(';');
+	this.console.log(cook);
+	if (cook[0]) {
+		var arr;
+		for (var j = 0; j <= this.cook.length - 1; j++) {
+			arr = cook[j].split('=');
+			this.console.log("arr of cook = "+arr);
+			i = arr[0].trim();
+			item = decodeURIComponent(arr[1]);
+			var liItem = document.createElement("li");
+
+			liItem.setAttribute("onclick", "remItem("+i+")");
+			liItem.setAttribute("id", i);
+			liItem.innerHTML = item;
+
+			ft_list.appendChild(liItem);
+			ft_list.prepend(liItem);
+		}
+		i++;
 	}
+	else
+		i = 0;
 }
 
-window.onunload = function() {
-	var todo = list.children;
-	var newCook = [];
-	for (var i = 0; i < todo.length; i++) {
-		newCook.unshift(todo[i].innerHTML);
-	}
-	document.cookie = JSON.stringify(newCook);
+function getRndInteger(min, max) {
+	return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+function setCookie(cname, cvalue, exdays, iVal) {
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays * 24 *60 * 60 * 1000));
+	var expires = "expires=" + d.toUTCString();
+	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
 function newToDo(){
-	var item = prompt("What needs to get done?", "New item");
-	list = document.getElementById("ft_list");
 
-	// console.log(item);
+	var item = prompt("What needs to get done?", "New item");
 
 	if (item === '' || item == null) {
 		alert("You can't do NOTHING?!")
@@ -38,18 +53,21 @@ function newToDo(){
 		liItem.setAttribute("id", i);
 		liItem.innerHTML = item;
 
-		list.appendChild(liItem);
-		list.prepend(liItem);
+		ft_list.appendChild(liItem);
+		ft_list.prepend(liItem);
+		var todos = ft_list.children;
+		setCookie(i, encodeURIComponent(todos[0].innerHTML),3);
 		i++;
 	}
-
-	console.log(list);
 }
 
-function remItem() {
+function remItem(id) {
+
 	if (!confirm("You're done with this? You want to remove this?"))
 		return;
-	var arg = arguments[0];
-	var rem = document.getElementById(arg);
-	list.removeChild(rem);
+
+	var rem = document.getElementById(id);
+
+	ft_list.removeChild(rem);
+	setCookie(id, encodeURIComponent(rem.innerHTML), -1);
 }
