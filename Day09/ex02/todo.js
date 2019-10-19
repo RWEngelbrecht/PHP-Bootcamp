@@ -13,7 +13,7 @@ window.onload = function() {
 			this.console.log("arr of cook = "+arr);
 			i = arr[0].trim();
 			item = decodeURIComponent(arr[1]);
-			var liItem = document.createElement("li");
+			var liItem = document.createElement("div");
 
 			liItem.setAttribute("onclick", "remItem("+i+")");
 			liItem.setAttribute("id", i);
@@ -47,7 +47,7 @@ function newToDo(){
 		alert("You can't do NOTHING?!")
 	}
 	else {
-		var liItem = document.createElement("li");
+		var liItem = document.createElement("div");
 
 		liItem.setAttribute("onclick", "remItem("+i+")");
 		liItem.setAttribute("id", i);
